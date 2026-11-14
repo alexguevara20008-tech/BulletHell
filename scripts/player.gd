@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var speed = 300
-var hp = 3
+var speed = 600
+var hp = 30
 var bullet_scene = preload("res://bullet.tscn")
 
 func _physics_process(delta):
@@ -28,5 +28,5 @@ func _on_hitbox_area_entered(area):
 		take_damage(1)
 		area.queue_free()
 	elif area.is_in_group("enemies"):
-		take_damage(1)
+		take_damage(5)
 		area.queue_free()

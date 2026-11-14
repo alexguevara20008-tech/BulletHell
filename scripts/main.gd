@@ -5,10 +5,10 @@ var music = preload("res://assets/musica.mp3")
 var wave = 1
 
 var score = 0
-var score_label: Label # <-- Esta línea faltaba arriba
+var score_label: Label
+var boss_spawned = false # Controla que el boss salga una sola vez
 
 func _ready():
-	# CanvasLayer asegura que el puntaje siempre esté por encima del juego
 	var ui = CanvasLayer.new()
 	add_child(ui)
 	
@@ -33,20 +33,28 @@ func _ready():
 func add_score(points):
 	score += points
 	score_label.text = "Puntos: " + str(score)
+	
+	# Si llega a 500 puntos y el boss no ha salido, lo creamos
+	if score >= 100 and not boss_spawned:
+		boss_spawned = true
+		spawn_boss()
+
+func spawn_boss():
+	var boss = enemy_scene.instantiate()
+	boss.is_boss = true # Activamos el modo boss antes de añadirlo a la escena
+	boss.position = Vector2(270, -80) # Aparece centrado arriba
+	add_child(boss)
 
 func _on_wave_timer_timeout():
 	wave += 1
 	spawn_wave()
 
 func spawn_wave():
-	var count = min(2 + wave, 8) # Cantidad de bichos en la oleada
+	var count = min(2 + wave, 8)
 	
 	for i in range(count):
 		var enemy = enemy_scene.instantiate()
-		# Posición X aleatoria entre los bordes de la pantalla (40 a 500)
 		var random_x = randf_range(40.0, 500.0)
-		# Posición Y aleatoria más arriba de la pantalla (-40 a -250) para que no bajen en fila
 		var random_y = randf_range(-250.0, -40.0)
-		
 		enemy.position = Vector2(random_x, random_y)
-		add_child(enemy)  
+		add_child(enemy)
