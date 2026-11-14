@@ -58,3 +58,17 @@ func spawn_wave():
 		var random_y = randf_range(-250.0, -40.0)
 		enemy.position = Vector2(random_x, random_y)
 		add_child(enemy)
+
+func game_over():
+	var ui = CanvasLayer.new()
+	add_child(ui)
+	
+	var label = Label.new()
+	label.text = "¡HAS MUERTO!"
+	label.position = Vector2(160, 300) # Ajusta X e Y según el tamaño de tu ventana
+	label.add_theme_font_size_override("font_size", 36)
+	ui.add_child(label)
+	
+	# Espera 3 segundos y vuelve al menú
+	await get_tree().create_timer(3.0).timeout
+	get_tree().change_scene_to_file("res://main_menu.tscn")
