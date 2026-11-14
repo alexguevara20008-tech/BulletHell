@@ -15,6 +15,7 @@ func _physics_process(delta):
 func shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = global_position
+	bullet.add_to_group("player_bullets") # Asegura que el enemigo detecte la bala
 	get_parent().add_child(bullet)
 
 func take_damage(amount):
