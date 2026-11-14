@@ -21,6 +21,8 @@ func shoot():
 func take_damage(amount):
 	hp -= amount
 	if hp <= 0:
+		if get_parent().has_method("game_over"):
+			get_parent().game_over()
 		queue_free()
 
 func _on_hitbox_area_entered(area):
