@@ -6,6 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 13.281565
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1168443727]
 position = Vector2(0, 32)
 scale = Vector2(0.2, 0.2)
@@ -18,3 +20,12 @@ shape = SubResource("CircleShape2D_i3pqv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1414403456]
 texture = ExtResource("2_onrkg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=348676995]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1429218193]
+position = Vector2(-10, 5)
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_onrkg")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
