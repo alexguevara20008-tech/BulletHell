@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://b7e8paaxem7io"]
 
-[ext_resource type="PackedScene" uid="uid://cucasafw4nlmd" path="res://enemy.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bbrj15aox6ur8" path="res://scripts/main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://k2wdisetv68o" path="res://assets/cielo.jpeg" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://du0lxmenjuktt" path="res://player.tscn" id="2_h2yge"]
@@ -18,12 +17,6 @@ position = Vector2(-153, -1926)
 scale = Vector2(1.8, 4)
 texture = ExtResource("2_1bvp3")
 centered = false
-
-[node name="Enemy" parent="." unique_id=726760161 instance=ExtResource("1_0xm2m")]
-position = Vector2(131.99998, 143)
-
-[node name="Enemy2" parent="." unique_id=456087762 instance=ExtResource("1_0xm2m")]
-position = Vector2(415, 120.99999)
 
 [node name="Player" parent="." unique_id=1168443727 instance=ExtResource("2_h2yge")]
 position = Vector2(249.00003, 869)
